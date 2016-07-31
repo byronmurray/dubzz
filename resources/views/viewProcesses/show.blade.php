@@ -6,9 +6,11 @@
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
                 <div class="panel-heading">{{ $process->title }}
-                  <button class="btn btn-primary btn-xs pull-right">Edit &nbsp;
-                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                  </button>
+                  <a href="{{ action('ProcessController@edit', [$process->id]) }}">
+                    <button class="btn btn-primary btn-xs pull-right">Edit &nbsp;
+                      <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                    </button>
+                  </a>
                 </div>
 
                 <div class="panel-body">

@@ -30,3 +30,9 @@ Route::post('processes/{process}/tasks', 'ProcessTaskController@store');
 
 
 Route::get('process/{process}', 'ViewProcessController@show');
+
+
+
+
+Route::get('step/create/{task}', 'StepController@create');
+Route::get('step/{step}/edit', 'StepController@edit');

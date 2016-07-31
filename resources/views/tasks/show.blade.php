@@ -5,34 +5,25 @@
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
-                <div class="panel-heading">Task</div>
+                <div class="panel-heading">{{ $tasks->title}}
+                    <a href="{{ action('StepController@create', [$tasks->id]) }}">
+                        <button class="btn btn-primary btn-sm pull-right btn--panel-heading">
+                            <span class="glyphicon glyphicon-paste" aria-hidden="true"></span> Add Step
+                        </button>
+                    </a>
+                    
+                    <a href="{{ action('TaskController@edit', [$tasks->id]) }}">
+                        <button class="btn btn-primary btn-sm pull-right btn--panel-heading">
+                            <span class="glyphicon glyphicon-paste" aria-hidden="true"></span> Edit
+                        </button>
+                    </a>
+                </div>
 
                 <div class="panel-body">
-                <h1>{{ $tasks->title }}</h1>
-                <a class="pull-right" href="{{ url('/tasks/'.$tasks->id.'/edit') }}">Edit title</a>
-                <hr>
 
-                <button class="btn btn-default" id="clicky">Add A Step</button>
+                @include('flash::message')
 
                 @include('errors._form')
-
-                {!! Form::open(['url' => 'tasks/'.$tasks->id.'/steps', 'id' => 'toggleForm']) !!}
-                    <div class="form-group">
-                        {!! Form::label('title', 'Title:') !!}
-                        {!! Form::text('title', old('title'), ['class' => 'form-control']) !!}
-                    </div>
-
-                    <div class="form-group">
-                        {!! Form::label('body', 'Body:') !!}
-                        {!! Form::textarea('body', old('title'), ['class' => 'form-control']) !!}
-                    </div>
-
-                    <div class="form-group">
-                        {!! Form::submit('Submit', ['class' => 'btn btn-default']) !!}
-                    </div>
-                {!! Form::close() !!}  
-
-
 
                 @if ($tasks->steps)
                 <ol>

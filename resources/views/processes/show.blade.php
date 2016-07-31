@@ -8,10 +8,16 @@
                 <div class="panel-heading">{{ $process->title }}</div>
 
                 <div class="panel-body">
+
+                @include('flash::message')
                         
                     <ul class="list-group">
                     @foreach ($process->processes as $process)
-                        <li class="list-group-item"><span >{{$process->title}}</span>
+                        <li class="list-group-item">
+                            <span >{{$process->title}} 
+                            @if ( count( $process->processes ) )
+                                <span class="badge">{{ count($process->processes)}}</span></span>
+                            @endif 
                             <div class="pull-right">
                                 <a href="{{ url('/processes/'.$process->id)}}" title="view process">
                                     <button class="btn btn-primary btn-xs">

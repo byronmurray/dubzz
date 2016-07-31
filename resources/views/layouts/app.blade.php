@@ -24,6 +24,12 @@
         .fa-btn {
             margin-right: 6px;
         }
+
+        .btn--panel-heading {
+            position: relative;
+            bottom: 5px;
+        }
+        
     </style>
     
 </head>
@@ -37,12 +43,14 @@
 
     </div>
 
+
+
     <!-- JavaScripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
 
-    <script type="text/javascript">
+{{--     <script type="text/javascript">
 
     $('#toggleForm').hide();
       
@@ -51,7 +59,7 @@
     });
 
 
-    </script>
+    </script> --}}
 
     {{-- cdn tinymce text editor --}}
     <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
@@ -59,12 +67,14 @@
       var editor_config = {
         path_absolute : "/",
         selector: "textarea",
+        height: 500,
         plugins: [
           "advlist autolink lists link image charmap print preview hr anchor pagebreak",
           "searchreplace wordcount visualblocks visualchars code fullscreen",
           "insertdatetime media nonbreaking save table contextmenu directionality",
           "emoticons template paste textcolor colorpicker textpattern"
         ],
+        menu: [],
         toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media",
         relative_urls: false,
         file_browser_callback : function(field_name, url, type, win) {
@@ -82,7 +92,7 @@
             file : cmsURL,
             title : 'Filemanager',
             width : x * 0.8,
-            height : y * 0.8,
+            height : y * 4,
             resizable : "yes",
             close_previous : "no"
           });
@@ -95,5 +105,6 @@
     <script>
         $('div.alert').not('.important').delay(3000).fadeOut(1000);
     </script>
+
 </body>
 </html>

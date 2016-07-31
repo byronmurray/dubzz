@@ -30,7 +30,32 @@ class StepController extends Controller
 
         flash('Your new step was created', 'success');
 
-        return back();
+        return redirect()->action('TaskController@show', [$task->id]);
+    }
+
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create(Task $task)
+    {
+        
+        return view('steps.create', compact('task'));
+    }
+
+
+    /**
+     * Edit the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Step $step)
+    {
+        
+        return view('steps.edit', compact('step'));
     }
 
 

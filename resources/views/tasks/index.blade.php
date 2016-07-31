@@ -5,28 +5,24 @@
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
-                <div class="panel-heading">Tasks</div>
+                <div class="panel-heading">Tasks
+                    <a href="{{ action('TaskController@create') }}">
+                        <button class="btn btn-primary btn-sm pull-right btn--panel-heading">
+                            <span class="glyphicon glyphicon-paste" aria-hidden="true"></span> New Task
+                        </button>
+                    </a>
+                </div>
 
                 <div class="panel-body">
-                    @foreach ($tasks as $task)
-                        <li><a href="{{ url('/tasks/'.$task->id)}}">{{ $task->title}} </a></li>
-                    @endforeach
 
-                <h2>Add A Task</h2>
+                 <button class="btn btn-default">All</button>  | <button class="btn btn-default">CAT 1</button>  | <button class="btn btn-default">CAT 2</button> | <button class="btn btn-default">CAT 3</button> | <button class="btn btn-default">CAT 4</button>
 
-                @include('errors._form')
-
-                {!! Form::open(['url' => 'tasks']) !!}
-                    <div class="form-group">
-                        {!! Form::label('title', 'Title:') !!}
-                        {!! Form::text('title', null, ['class' => 'form-control']) !!}
-                    </div>
-
-                    <div class="form-group">
-                        {!! Form::submit('Submit', ['class' => 'btn btn-default']) !!}
-                    </div>
-                {!! Form::close() !!}
-               
+                    @include('flash::message')
+                    <ul class="list-group">
+                        @foreach ($tasks as $task)
+                            <li class="list-group-item"><a href="{{ url('/tasks/'.$task->id)}}">{{ $task->title}} </a></li>
+                        @endforeach
+                    </ul>
 
                 </div>
             </div>

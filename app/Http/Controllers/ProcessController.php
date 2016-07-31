@@ -114,6 +114,27 @@ class ProcessController extends Controller
     }
 
 
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //return ('hit');
+
+        // delete the item
+
+        //flash a messgae to user
+        flash('Your Process has been deleted', 'success');
+
+        return back();
+
+        // return back
+    }
+
+
     
 
 }

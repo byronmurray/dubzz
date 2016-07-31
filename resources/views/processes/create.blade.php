@@ -29,12 +29,11 @@
                         <label for="title">Assign to an exisiting process</label>
                         <select class="form-control" id="processes" name="process_id">
                             
-                           {{--  want to only show the ones available --}}
                              
                                 <option value="0"><-- This is a Top Level Process --></option>
 
                                 @foreach($processes as $process)
-
+                                  {{-- if a process has tasks assigned it can not be assigned to another process --}}
                                   @if ($process->tasks->isEmpty())
                                     <option value="{{$process->id}}">{{$process->title}}</option>
                                   @endif

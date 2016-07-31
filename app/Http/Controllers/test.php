@@ -5,20 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Task;
-use Session;
 
-class TaskController extends Controller
+class test extends Controller
 {
-     /**
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
-        $tasks = Task::all();
-        return view('tasks.index', compact('tasks'));
+    {
+        //
     }
 
     /**
@@ -28,7 +25,7 @@ class TaskController extends Controller
      */
     public function create()
     {
-        return view('tasks.create');
+        //
     }
 
     /**
@@ -39,18 +36,7 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        
-        $this->validate($request, [
-            'title' => 'required|unique:tasks|max:120',
-        ]);
-
-        $task = new task($request->all());
-
-        $task->save();
-
-        flash('Your new task was created', 'success');
-
-        return redirect()->action('TaskController@index');
+        //
     }
 
     /**
@@ -59,14 +45,10 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Task $tasks)
+    public function show($id)
     {
-        
-        $tasks->load('steps');
-
-        return view('tasks.show', compact('tasks'));
+        //
     }
-
 
     /**
      * Show the form for editing the specified resource.
@@ -74,9 +56,9 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Task $tasks)
+    public function edit($id)
     {
-        return view('tasks.edit', compact('tasks'));
+        //
     }
 
     /**
@@ -86,15 +68,19 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Task $tasks)
+    public function update(Request $request, $id)
     {
-        
-        $tasks->update($request->all());
-
-        flash('Your Task title has been updated', 'success');
-
-        return redirect()->action('TaskController@show', [$tasks->id]);
-
+        //
     }
 
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
+    }
 }
