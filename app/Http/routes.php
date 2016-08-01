@@ -21,6 +21,7 @@ Route::get('/home', 'HomeController@index');
 
 
 
+
 Route::resource('tasks', 'TaskController');
 Route::post('tasks/{task}/steps', 'StepController@store');
 
@@ -36,3 +37,9 @@ Route::get('process/{process}', 'ViewProcessController@show');
 
 Route::get('step/create/{task}', 'StepController@create');
 Route::get('step/{step}/edit', 'StepController@edit');
+
+
+
+
+
+Route::get('test', 'TestController@index');

@@ -15,8 +15,6 @@
 
                 <div class="panel-body">
 
-                 <button class="btn btn-default">All</button>  | <button class="btn btn-default">CAT 1</button>  | <button class="btn btn-default">CAT 2</button> | <button class="btn btn-default">CAT 3</button> | <button class="btn btn-default">CAT 4</button>
-
                     @include('flash::message')
                     <ul class="list-group">
                         @foreach ($tasks as $task)

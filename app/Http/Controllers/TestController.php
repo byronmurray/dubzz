@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Task;
 
-class test extends Controller
+class TestController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +16,10 @@ class test extends Controller
      */
     public function index()
     {
-        //
+
+        $task = factory(Task::class, 1)->create();
+
+        
     }
 
     /**
