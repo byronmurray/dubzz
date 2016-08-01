@@ -6,12 +6,6 @@
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
                 <div class="panel-heading">{{ $tasks->title}}
-                    <a href="{{ action('StepController@create', [$tasks->id]) }}">
-                        <button class="btn btn-primary btn-sm pull-right btn--panel-heading">
-                            <span class="glyphicon glyphicon-paste" aria-hidden="true"></span> Add Step
-                        </button>
-                    </a>
-                    
                     <a href="{{ action('TaskController@edit', [$tasks->id]) }}">
                         <button class="btn btn-primary btn-sm pull-right btn--panel-heading">
                             <span class="glyphicon glyphicon-paste" aria-hidden="true"></span> Edit
@@ -23,19 +17,9 @@
 
                 @include('flash::message')
 
-                @include('errors._form')
+                <p>{!! $tasks->body !!}</p>
 
-                @if ($tasks->steps)
-                <ol>
-                  @foreach ($tasks->steps as $step)
-                    <li>
-                      <h4>{{ $step->title}}</h4>
-                      <p>{!! $step->body !!}</p>
-                    </li>
-                    <hr>
-                  @endforeach
-                </ol>
-                @endif
+
                 
 
                 </div>

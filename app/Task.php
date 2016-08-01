@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Task extends Model
 {
-    protected $fillable = ['title'];
+    protected $fillable = ['title', 'body'];
     
 	public function steps() {
 

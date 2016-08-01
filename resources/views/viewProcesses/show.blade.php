@@ -18,19 +18,9 @@
                 @if (count($process->tasks))
                   @foreach ($process->tasks as $task)
                       <h2>{{ $task->title}}</h2>
+                      <p>{!! $task->body !!}</p>
 
-                      @if ($task->steps)
-                          <ol>
-                            @foreach ($task->steps as $step)
-                              <li>
-                                <h4>{{ $step->title}}</h4>
-                                <p>{!! $step->body !!}</p>
-                              </li>
-                              <hr>
-                            @endforeach
-                          </ol>
-                      @endif
-
+                      <hr>
                   @endforeach
                 @endif           
                 

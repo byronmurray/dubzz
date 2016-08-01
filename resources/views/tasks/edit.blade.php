@@ -11,40 +11,25 @@
 
                     @include('errors._form')
 
-                    <form action="{{ url('/tasks/'.$tasks->id)}}" method="POST">
-                      {{ method_field('PATCH') }}
-                      <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                      <div class="form-group">
-                        <label for="title">Title</label>
-                        <input type="text" class="form-control" name="title" value="{{ $tasks->title }}">
-                      </div>
-                      <div class="pull-right">
-                        <button type="submit" class="btn btn-primary">Update</button> <button class="btn btn-default">Cancel</button>
-                      </div>
-                      
-                    </form>
+                     {!! Form::model($tasks, ['method' => 'PATCH', 'url' => 'tasks/'.$tasks->id]) !!}
+                    <div class="form-group">
+                        {!! Form::label('title', 'Title:') !!}
+                        {!! Form::text('title', null, ['class' => 'form-control']) !!}
+                    </div>
+
+                    <div class="form-group">
+                        {!! Form::label('body', 'Body:') !!}
+                        {!! Form::textarea('body', old('title'), ['class' => 'form-control']) !!}
+                    </div>
+
+                    <div class="form-group">
+                        {!! Form::submit('Update', ['class' => 'btn btn-primary']) !!}
+                        {!! Form::button('Cancel', ['class' => 'btn btn-primary']) !!}
+                    </div>
+                {!! Form::close() !!}
 
 
                     <div class="clearfix"></div>
-
-                    @if ($tasks->steps)
-                      <ul class="list-group">
-                        @foreach ($tasks->steps as $step)
-                          <li class="list-group-item"> {{ $step->title}} 
-                            <div class="pull-right">
-                              <a href="{{ action('StepController@edit', [$step->id]) }}" title="edit process">
-                                  <button class="btn btn-primary btn-xs">
-                                      <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-                                  </button>
-                              </a> 
-                              <button class="btn btn-danger btn-xs">
-                                  <span class="glyphicon glyphicon-trash" title="delete process"></span>
-                              </button>
-                            </div>
-                          </li>
-                        @endforeach
-                      </ul>
-                    @endif
 
                 </div>
             </div>
