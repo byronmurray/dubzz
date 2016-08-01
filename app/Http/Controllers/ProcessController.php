@@ -122,11 +122,11 @@ class ProcessController extends Controller
      */
     public function destroy($id)
     {
-        //return ('hit');
+        
+        $process = Process::find($id);
 
-        // delete the item
+        $process->destroy();
 
-        //flash a messgae to user
         flash('Your Process has been deleted', 'success');
 
         return back();
