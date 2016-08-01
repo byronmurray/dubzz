@@ -125,7 +125,7 @@ class ProcessController extends Controller
         
         $process = Process::find($id);
 
-        $process->destroy();
+        $process->destroy($id);
 
         flash('Your Process has been deleted', 'success');
 
