@@ -33,18 +33,27 @@ class ProcessController extends Controller
     public function show($id)
     {
         
-        $process = Process::find($id);
+        $processes = Process::find($id);
 
-        $process->load('processes');
+        // get an array of tasks currently that belong to the process
+        $array = $processes->tasks->lists('id');
 
-       // return $process;
-        if ( $process->processes->isEmpty() ) {
+        // get all tasks except those in the array
+        $taskList = Task::whereNotIn('id', $array)->get();
+
+        //$processes->load('processes');
+
+
+        
+
+       //return $processes;
+       /* if ( $process->processes->isEmpty() ) {
             return redirect()->action('ViewProcessController@show', [$id]);
-        }
+        }*/
         
 
 
-        return view('processes.show', compact('process'));
+        return view('processes.show', compact('processes', 'taskList' ));
     }
 
 
@@ -99,18 +108,12 @@ class ProcessController extends Controller
     public function edit(Process $processes)
     {
         
-        // get an array of tasks currently that belong to the process
-        $array = $processes->tasks->lists('id');
-
-        // get all tasks except those in the array
-        $taskList = Task::whereNotIn('id', $array)->get();
-
         // eager load the relationships
         $processes->load('tasks.steps');
 
         //return $processes;
 
-        return view('processes.edit', compact('processes', 'taskList'));
+        return view('processes.edit', compact('processes'));
     }
 
 
