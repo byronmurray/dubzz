@@ -6,7 +6,7 @@
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
                 <div class="panel-heading">{{ $processes->title }}
-                    
+
                 @if ($processes->processes->isEmpty())
                     <button type="button" class="btn btn-primary btn-sm pull-right btn--panel-heading" data-toggle="modal" data-target="#assign-task">
                         Assign Task
@@ -86,6 +86,8 @@
 
                 <div class="panel-body">
 
+                <small>Created by {{ $processes->user->name}} on the {{ date_format($processes->created_at,"jS F Y") }} at {{ date_format($processes->created_at,"H:i a") }}</small>
+
                 @include('flash::message')
                         
                     @if ($processes->tasks->isEmpty())
@@ -163,6 +165,7 @@
                         </tbody> 
                       </table>
                       @endif
+                    
                     {{-- if a process has tasks --}}
 
 

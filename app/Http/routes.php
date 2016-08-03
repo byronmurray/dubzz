@@ -19,27 +19,28 @@ Route::auth();
 
 Route::get('/home', 'HomeController@index');
 
+Route::group(['middleware' => ['auth']], function () {
+    Route::resource('tasks', 'TaskController');
+	Route::post('tasks/{task}/steps', 'StepController@store');
+
+	Route::resource('processes', 'ProcessController');
+	Route::post('processes/{process}/tasks', 'ProcessTaskController@store');
 
 
 
-Route::resource('tasks', 'TaskController');
-Route::post('tasks/{task}/steps', 'StepController@store');
-
-Route::resource('processes', 'ProcessController');
-Route::post('processes/{process}/tasks', 'ProcessTaskController@store');
-
-
-
-Route::get('process/{process}', 'ViewProcessController@show');
-
-
-
-
-Route::get('step/create/{task}', 'StepController@create');
-Route::get('step/{step}/edit', 'StepController@edit');
+	Route::get('process/{process}', 'ViewProcessController@show');
 
 
 
 
+	Route::get('step/create/{task}', 'StepController@create');
+	Route::get('step/{step}/edit', 'StepController@edit');
 
-Route::get('test', 'TestController@index');
+
+
+
+
+	Route::get('test', 'TestController@index');
+});
+
+

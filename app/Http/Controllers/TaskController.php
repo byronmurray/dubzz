@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Task;
 use Session;
+use Auth;
 
 class TaskController extends Controller
 {
@@ -45,6 +46,7 @@ class TaskController extends Controller
         ]);
 
         $task = new task($request->all());
+        $task->user_id = Auth::id();
 
         $task->save();
 
@@ -62,8 +64,6 @@ class TaskController extends Controller
     public function show(Task $tasks)
     {
         
-        $tasks->load('steps');
-
         return view('tasks.show', compact('tasks'));
     }
 

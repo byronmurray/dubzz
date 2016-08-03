@@ -7,9 +7,12 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Task;
 use App\Process;
+use Auth;
 
 class ProcessController extends Controller
 {
+    
+
     /**
      * Display a listing of the resource.
      *
@@ -91,6 +94,7 @@ class ProcessController extends Controller
         //return $request->process_id;
 
         $process = new Process($request->all());
+        $process->user_id = Auth::id();
 
         $process->save();
 

@@ -23,4 +23,14 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function processes() {
+
+        return $this->hasMany(Process::class);
+    }
+
+    public function tasks() {
+
+        return $this->hasMany(Task::class);
+    }
 }

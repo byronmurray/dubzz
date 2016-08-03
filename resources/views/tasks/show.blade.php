@@ -15,6 +15,8 @@
 
                 <div class="panel-body">
 
+                <small>Created by {{ $tasks->user->name}} on the {{ date_format($tasks->created_at,"jS F Y") }} at {{ date_format($tasks->created_at,"H:i a") }}</small>
+
                 @include('flash::message')
 
                 <p>{!! $tasks->body !!}</p>

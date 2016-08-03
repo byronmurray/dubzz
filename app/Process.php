@@ -18,4 +18,9 @@ class Process extends Model
 
 		return $this->hasMany(Process::class);
 	}
+
+	public function user() {
+
+		return $this->belongsTo(User::class);
+	}
 }
