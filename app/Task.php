@@ -23,4 +23,15 @@ class Task extends Model
 
 		return $this->belongsTo(User::class);
 	}
+
+	/*
+	* Get a list of the tag ids associated with the current article
+	*
+	* @return array
+	*/
+
+	public function getTagListAttribute() {
+
+		return $this->tags->lists('id')->all();
+	}
 }

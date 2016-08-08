@@ -17,10 +17,16 @@
 
                 <small>Created by {{ $tasks->user->name}} on the {{ date_format($tasks->created_at,"jS F Y") }} at {{ date_format($tasks->created_at,"H:i a") }}</small>
 
-                @include('flash::message')
-
                 <p>{!! $tasks->body !!}</p>
 
+                
+                @unless ($tasks->tags->isEmpty())
+                    <h4>Tags</h4>
+                    @foreach ($tasks->tags as $tag)
+                        <a href="#" class="btn btn-sm btn-default">{{ $tag->name }}</a>
+                    @endforeach
+                @endunless
+                
 
                 
 

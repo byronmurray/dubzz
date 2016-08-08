@@ -7,7 +7,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Task;
 use Session;
+use App\Tag;
 use Auth;
+
 
 class TaskController extends Controller
 {
@@ -29,7 +31,8 @@ class TaskController extends Controller
      */
     public function create()
     {
-        return view('tasks.create');
+        $tags = Tag::lists('name', 'id');
+        return view('tasks.create', compact('tags'));
     }
 
     /**
@@ -49,6 +52,8 @@ class TaskController extends Controller
         $task->user_id = Auth::id();
 
         $task->save();
+
+        $task->tags()->attach($request->tag_list);
 
         flash('Your new task was created', 'success');
 
@@ -76,7 +81,8 @@ class TaskController extends Controller
      */
     public function edit(Task $tasks)
     {
-        return view('tasks.edit', compact('tasks'));
+        $tags = Tag::lists('name', 'id');
+        return view('tasks.edit', compact('tasks', 'tags'));
     }
 
     /**
@@ -90,6 +96,8 @@ class TaskController extends Controller
     {
         
         $tasks->update($request->all());
+
+        $tasks->tags()->sync($request->tag_list);
 
         flash('Your Task title has been updated', 'success');
 
