@@ -22,6 +22,10 @@ class ProcessController extends Controller
     {
         $processes = Process::where('process_id', 0)->get();
 
+        if ($processes->isEmpty()) {
+            flash('You dont have any Process, start by creating a New Process', 'info');
+        }
+
         $processes->load('processes');
 
         return view('processes.index', compact('processes'));
@@ -43,19 +47,7 @@ class ProcessController extends Controller
 
         // get all tasks except those in the array
         $taskList = Task::whereNotIn('id', $array)->get();
-
-        //$processes->load('processes');
-
-
-        
-
-       //return $processes;
-       /* if ( $process->processes->isEmpty() ) {
-            return redirect()->action('ViewProcessController@show', [$id]);
-        }*/
-        
-
-
+    
         return view('processes.show', compact('processes', 'taskList' ));
     }
 
@@ -111,13 +103,22 @@ class ProcessController extends Controller
      */
     public function edit(Process $processes)
     {
-        
-        // eager load the relationships
-        $processes->load('tasks.steps');
-
-        //return $processes;
-
         return view('processes.edit', compact('processes'));
+    }
+
+
+    /**
+     * Update the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Process $processes)
+    {
+        
+        $processes->update($request->all());
+
+        return back();
     }
 
 
@@ -138,7 +139,6 @@ class ProcessController extends Controller
 
         return back();
 
-        // return back
     }
 
 

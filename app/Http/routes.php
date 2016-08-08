@@ -20,27 +20,17 @@ Route::auth();
 Route::get('/home', 'HomeController@index');
 
 Route::group(['middleware' => ['auth']], function () {
+    
     Route::resource('tasks', 'TaskController');
 	Route::post('tasks/{task}/steps', 'StepController@store');
 
 	Route::resource('processes', 'ProcessController');
+	
 	Route::post('processes/{process}/tasks', 'ProcessTaskController@store');
 
+	Route::delete('task/{task}/process/{process}', 'ProcessTaskController@destroy' )->name('tasks.remove');
 
 
-	Route::get('process/{process}', 'ViewProcessController@show');
-
-
-
-
-	Route::get('step/create/{task}', 'StepController@create');
-	Route::get('step/{step}/edit', 'StepController@edit');
-
-
-
-
-
-	Route::get('test', 'TestController@index');
 });
 
 

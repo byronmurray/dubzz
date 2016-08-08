@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Process;
+use App\Task;
 
 
 class ProcessTaskController extends Controller
@@ -23,4 +24,24 @@ class ProcessTaskController extends Controller
 
         return back();
     }
+
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($task, Process $process)
+    {
+        $process->tasks()->detach($task);
+
+        flash('Your Task has been removed', 'success');
+
+        return back();
+
+    }
+
+
+
 }
