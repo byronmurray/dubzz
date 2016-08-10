@@ -15,7 +15,7 @@
 
           <div class="form-group">
               {!! Form::submit('Update', ['class' => 'btn btn-primary']) !!}
-              {!! Form::button('Cancel', ['class' => 'btn btn-primary']) !!}
+              {!! Form::button('Cancel', ['class' => 'btn btn-primary', 'data-dismiss' => 'modal']) !!}
           </div>
       {!! Form::close() !!}
 

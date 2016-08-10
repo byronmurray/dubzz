@@ -10,7 +10,7 @@
         <form action="{{ url('/processes/'.$processes->id.'/tasks')}}" method="POST">
           <input type="hidden" name="_token" value="{{ csrf_token() }}">
           <div class="form-group">
-             <select class="form-control" multiple="multiple" id="tasks" name="task_id">
+             <select class="form-control" multiple="multiple" id="tasks" name="task_id[]">
                 
                 @foreach($taskList as $task)
                     <option value="{{$task->id}}">{{$task->title}}</option>
