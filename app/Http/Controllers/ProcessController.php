@@ -20,7 +20,7 @@ class ProcessController extends Controller
      */
     public function index()
     {
-        $processes = Process::where('process_id', 0)->get();
+        $processes = Process::where('process_id', 0)->paginate(5);
 
         if ($processes->isEmpty()) {
             flash('You dont have any Process, start by creating a New Process', 'info');

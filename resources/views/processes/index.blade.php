@@ -23,7 +23,7 @@
                         @include('processes._display_processes_tasks', ['var' => $processes])
 
 
-                    <div class="clearfix"></div>
+                {{ $processes->links() }}
 
                 </div>
             </div>

@@ -22,6 +22,8 @@
                         @endforeach
                     </ul>
 
+                    {{ $tasks->links() }}
+
                 </div>
             </div>
         </div>
