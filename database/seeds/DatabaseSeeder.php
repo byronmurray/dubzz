@@ -5,6 +5,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Process;
 use App\Task;
 use App\User;
+use App\Tag;
 
 
 class DatabaseSeeder extends Seeder
@@ -122,6 +123,38 @@ class DatabaseSeeder extends Seeder
 		/*factory(User::class, 10)->create();
 		factory(Task::class, 10)->create();
 		factory(Process::class, 10)->create();*/
+
+		$tag = new App\Tag;
+		$tag->name = 'Website';
+		$tag->save();
+
+		$tag = new App\Tag;
+		$tag->name = 'SEO';
+		$tag->save();
+
+		$tag = new App\Tag;
+		$tag->name = 'Social Media';
+		$tag->save();
+
+		$tag = new App\Tag;
+		$tag->name = 'Admin';
+		$tag->save();
+
+		$tag = new App\Tag;
+		$tag->name = 'Staff';
+		$tag->save();
+
+		$tag = new App\Tag;
+		$tag->name = 'Accounts';
+		$tag->save();
+
+		$tag = new App\Tag;
+		$tag->name = 'Office';
+		$tag->save();
+
+		$tag = new App\Tag;
+		$tag->name = 'Client';
+		$tag->save();
 
 
 		$task = new App\Task;
