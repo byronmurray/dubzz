@@ -11,6 +11,11 @@
                             <span class="glyphicon glyphicon-paste" aria-hidden="true"></span> Edit
                         </button>
                     </a>
+                    <a href="#">
+                        <button class="btn btn-primary btn-sm pull-right btn--panel-heading">
+                            <span class="glyphicon glyphicon-paste" aria-hidden="true"></span> Revisions
+                        </button>
+                    </a>
                 </div>
 
                 <div class="panel-body">

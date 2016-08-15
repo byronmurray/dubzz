@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Revision;
 use App\Task;
 use Session;
 use App\Tag;
@@ -34,6 +35,8 @@ class TaskController extends Controller
         $tags = Tag::lists('name', 'id');
         return view('tasks.create', compact('tags'));
     }
+
+
 
     /**
      * Store a newly created resource in storage.
@@ -72,7 +75,6 @@ class TaskController extends Controller
         return view('tasks.show', compact('tasks'));
     }
 
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -95,13 +97,20 @@ class TaskController extends Controller
     public function update(Request $request, Task $tasks)
     {
         
-        $tasks->update($request->all());
+        /*This will run when admin aproves it*/
 
-        $tasks->tags()->sync($request->tag_list);
+        //$tasks->update($request->all());
+        //$tasks->tags()->sync($request->tag_list);
 
-        flash('Your Task title has been updated', 'success');
+        //return $tasks;
 
-        return redirect()->action('TaskController@show', [$tasks->id]);
+        
+
+        flash('Your Task title submitted for approval', 'success');
+
+        return back();
+
+        //return redirect()->action('TaskController@show', [$tasks->id]);
 
     }
 

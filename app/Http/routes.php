@@ -11,24 +11,37 @@
 |
 */
 
+/*HOME PAGE*/
 Route::get('/', function () {
     return view('welcome');
 });
 
+/*LOGIN/LOGOUT/PASSWORD RESET*/
 Route::auth();
 
+/*DASHBOARD*/
 Route::get('/home', 'HomeController@index');
 
+/*MIDDLEWARE PROTECTED ROUTES*/
 Route::group(['middleware' => ['auth']], function () {
     
+    /*TASKS*/
     Route::resource('tasks', 'TaskController');
-	Route::post('tasks/{task}/steps', 'StepController@store');
 
+    /*PROCESSES*/
 	Route::resource('processes', 'ProcessController');
 	
+	/*TASK/PROCESS POVIT*/
 	Route::post('processes/{process}/tasks', 'ProcessTaskController@store');
-
 	Route::delete('task/{task}/process/{process}', 'ProcessTaskController@destroy' )->name('tasks.remove');
+	
+	/*REVISIONS*/
+	Route::post('revisions/{tasks}', 'RevisionController@store');
+	Route::get('revisions/{revisions}', 'RevisionController@show')->name('revision.show');
+	Route::patch('revisions/{revisions}', 'RevisionController@update');
+
+	/*TASK REVISIONS*/
+	Route::get('tasks/{tasks}/revisions', 'RevisionController@revisions');
 
 
 });

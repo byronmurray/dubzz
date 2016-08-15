@@ -34,4 +34,5 @@ class Task extends Model
 
 		return $this->tags->lists('id')->all();
 	}
+	
 }

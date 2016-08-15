@@ -33,4 +33,9 @@ class User extends Authenticatable
 
         return $this->hasMany(Task::class);
     }
+
+    public function revisons() {
+
+        return $this->hasMany(Revision::class);
+    }
 }

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests;
 use Illuminate\Http\Request;
+use App\Http\Requests;
+use App\Revision;
+use App\Task;
 
 class HomeController extends Controller
 {
@@ -14,6 +16,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
+        /*update this to just admin*/
         $this->middleware('auth');
     }
 
@@ -24,6 +27,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        
+        $revisions = Revision::all();
+
+        $revisions->load('user');
+
+        return view('home', compact('revisions'));
     }
 }

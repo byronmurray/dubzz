@@ -11,7 +11,7 @@
 
                     @include('errors._form')
 
-                     {!! Form::model($tasks, ['method' => 'PATCH', 'url' => 'tasks/'.$tasks->id]) !!}
+                     {!! Form::model($tasks, ['method' => 'POST', 'url' => 'revisions/'.$tasks->id]) !!}
                     <div class="form-group">
                         {!! Form::label('title', 'Title:') !!}
                         {!! Form::text('title', null, ['class' => 'form-control']) !!}
