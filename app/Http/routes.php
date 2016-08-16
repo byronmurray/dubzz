@@ -19,8 +19,6 @@ Route::get('/', function () {
 /*LOGIN/LOGOUT/PASSWORD RESET*/
 Route::auth();
 
-/*DASHBOARD*/
-Route::get('/home', 'HomeController@index');
 
 /*MIDDLEWARE PROTECTED ROUTES*/
 Route::group(['middleware' => ['auth']], function () {
@@ -43,6 +41,14 @@ Route::group(['middleware' => ['auth']], function () {
 	/*TASK REVISIONS*/
 	Route::get('tasks/{tasks}/revisions', 'RevisionController@revisions');
 
+
+	/*ADMIN AREA*/
+	Route::get('dashboard', 'AdminController@index');
+	Route::get('dashboard/tasks', 'AdminController@showTasks');
+	Route::get('dashboard/tasks/pending', 'AdminController@showTasksPending');
+
+	Route::get('dashboard/tasks/deleted', 'AdminController@showTasksDeleted');
+	Route::get('dashboard/tasks/declined', 'AdminController@showTasksDeclined');
 
 });
 
