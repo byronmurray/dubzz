@@ -484,7 +484,6 @@ $(function () {
     <script type="text/javascript">
       $('#tag_list').select2({
         placeholder: 'Select a tag',
-        tags: true,
       });
     </script>
 
@@ -542,10 +541,6 @@ $(function () {
 
     <script>
         $('div.alert').not('.important').delay(3000).fadeOut(1000);
-
-        $('h2').click(function() {
-          $("div > div").toggle();
-        });
     </script>
 
 </body>

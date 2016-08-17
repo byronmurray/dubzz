@@ -2,25 +2,48 @@
 
 @section('content')
 
+<p>View all tasks</p>
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+<ul>
+	<li>Add search bar</li>
+	<li>filter by title tags and date?</li>
+</ul>
+
 
 <h2>Tasks</h2>
 
-<ul class="list-group">
-    @foreach ($tasks as $task)
-        <li class="list-group-item"><a href="{{ url('/tasks/'.$task->id)}}">{{ $task->title}} </a></li>
+
+<table class="table table-striped">
+  <thead>
+    <tr>  
+      <th>Title</th> 
+      <th>Date</th> 
+      <th>Edit</th>
+      <th>Revisions</th>
+      <th>Delete</th>
+    </tr> 
+  </thead>
+  <tbody>
+  	@foreach ($tasks as $task)
+
+    {{-- {{ var_dump($task->revisions->seen )}} --}}
+      	<tr>
+	    	<td><a href="{{ url('/tasks/'.$task->id)}}">{{ $task->title}} </a></td>
+		    <td>{{ $task->created_at }}</td> 
+		    <td><button class="btn btn-default btn-sm">Edit</button></td>
+		    <td>
+            	@unless ($task->revisions->isEmpty())
+	            	<a href="{{ route('tasks.revisions', ['tasks' => $task->id]) }}">
+	            		<button class="btn btn-default btn-sm">Revisions {{ count($task->revisions) }} </button>
+	        		</a>
+            	@endunless
+		    </td>
+		    <td><button class="btn btn-danger btn-sm">Delete</button></td>
+  		</tr>
     @endforeach
-</ul>
-
-{{--             {{ $tasks->links() }} --}}
-
-       
+  </tbody> 
+</table>
+      
 
 
 @endsection

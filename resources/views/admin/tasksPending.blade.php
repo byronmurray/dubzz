@@ -2,23 +2,35 @@
 
 @section('content')
 
+<p>Admin can see all edits and new tasks created by users</p>
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
 <h2>Pending Tasks</h2>
 
-<ul class="list-group">
-    @foreach ($tasks as $task)
-        <li class="list-group-item"><a href="{{ url('/tasks/'.$task->id)}}">{{ $task->title}} </a></li>
+<table class="table table-striped">
+  <thead>
+    <tr>  
+      <th>Title</th> 
+      <th>User</th> 
+      <th>Date</th>
+      <th>New/Edit</th>
+      <th>Approve</th>
+      <th>Delete</th>
+    </tr> 
+  </thead>
+  <tbody>
+  	@foreach ($revisions as $revision)
+      	<tr>
+	    	<td><a href="#">{{ $revision->title}} </a></td>
+		    <td>{{ $revision->user->name }}</td>
+		    <td>{{ $revision->created_at }}</td>
+		    <td>New</td>
+		    <td><button>Approve</button></td>
+		    <td><button>Delete</button></td>
+  		</tr>
     @endforeach
-</ul>
-
-{{-- {{ $tasks->links() }} --}}
+  </tbody> 
+</table>
 
        
 

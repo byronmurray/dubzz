@@ -24,17 +24,30 @@ class RevisionController extends Controller
         return view('tasks.revisions.show', compact('revisions'));
     }
 
+
     /**
-     * Display the specified resource.
+     * Display all revisions for the task.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function revisions(Task $tasks)
+    public function showTasksRevisions(Task $tasks)
     {
         $revisions = Revision::where('task_id', $tasks->id)->get();
         //return $revisions;
-        return view('tasks.showRevisions', compact('tasks', 'revisions'));
+        return view('admin.tasksRevisions', compact('revisions'));
+    }
+
+
+    /**
+     * Display single revision for the task.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function showTasksRevision(Revision $revisions)
+    {
+        return view('admin.tasksRevisions', compact('revisions'));
     }
 
 

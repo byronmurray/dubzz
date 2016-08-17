@@ -45,8 +45,13 @@
     @include('layouts._navagation')
 
     <div class="container">
+      
 
         @yield('content')
+
+        {{-- <div class="col-md-2 sidebar">
+        The sidebar
+      </div> --}}
 
     </div>
 
@@ -121,10 +126,6 @@
 
     <script>
         $('div.alert').not('.important').delay(3000).fadeOut(1000);
-
-        $('h2').click(function() {
-          $("div > div").toggle();
-        });
     </script>
 
 </body>

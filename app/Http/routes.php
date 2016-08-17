@@ -35,20 +35,23 @@ Route::group(['middleware' => ['auth']], function () {
 	
 	/*REVISIONS*/
 	Route::post('revisions/{tasks}', 'RevisionController@store');
-	Route::get('revisions/{revisions}', 'RevisionController@show')->name('revision.show');
 	Route::patch('revisions/{revisions}', 'RevisionController@update');
 
-	/*TASK REVISIONS*/
-	Route::get('tasks/{tasks}/revisions', 'RevisionController@revisions');
+	
 
 
-	/*ADMIN AREA*/
-	Route::get('dashboard', 'AdminController@index');
-	Route::get('dashboard/tasks', 'AdminController@showTasks');
-	Route::get('dashboard/tasks/pending', 'AdminController@showTasksPending');
+			/*ADMIN AREA*/ /*this will be in its own group middleware*/
+			Route::get('dashboard', 'AdminController@index');
 
-	Route::get('dashboard/tasks/deleted', 'AdminController@showTasksDeleted');
-	Route::get('dashboard/tasks/declined', 'AdminController@showTasksDeclined');
+			/*TASKS*/
+			Route::get('dashboard/tasks', 'AdminController@showTasks');
+			Route::get('dashboard/tasks/pending', 'AdminController@showTasksPending');
+			Route::get('dashboard/tasks/deleted', 'AdminController@showTasksDeleted');
+			Route::get('dashboard/tasks/declined', 'AdminController@showTasksDeclined');
+
+			/*TASK REVISIONS*/
+			Route::get('dashboard/tasks/{tasks}/revisions', 'RevisionController@showTasksRevisions')->name('tasks.revisions');
+			Route::get('dashboard/revisions/{revisions}', 'RevisionController@show')->name('revision.show');
 
 });
 

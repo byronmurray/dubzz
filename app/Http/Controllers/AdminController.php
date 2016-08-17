@@ -28,7 +28,7 @@ class AdminController extends Controller
     public function index()
     {
         
-        $revisions = Revision::all();
+        $revisions = Revision::where('approved', true)->get();
 
         $revisions->load('user');
 
@@ -56,9 +56,9 @@ class AdminController extends Controller
      */
     public function showTasksPending()
     {
-        $tasks = Task::all();
+        $revisions = Revision::where('seen', false)->get();
 
-        return view('admin.tasksPending' , compact('tasks'));
+        return view('admin.tasksPending' , compact('revisions'));
     }
 
 
@@ -69,9 +69,9 @@ class AdminController extends Controller
      */
     public function showTasksDeclined()
     {
-        $tasks = Task::all();
+        $revisions = Revision::where('seen', false)->where('approved', false)->get();
 
-        return view('admin.tasksDeclined' , compact('tasks'));
+        return view('admin.tasksDeclined' , compact('revisions'));
     }
 
 
@@ -87,5 +87,4 @@ class AdminController extends Controller
         return view('admin.tasksDeleted' , compact('tasks'));
     }
 }
-
 

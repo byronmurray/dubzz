@@ -2,31 +2,29 @@
 
 @section('content')
 
-    <div class="row">
-        <div class="col-md-10 col-md-offset-1">
-            <div class="panel panel-default">
-                <div class="panel-heading">Tasks
-                    <a href="{{ action('TaskController@create') }}">
-                        <button class="btn btn-primary btn-sm pull-right btn--panel-heading">
-                            <span class="glyphicon glyphicon-paste" aria-hidden="true"></span> New Task
-                        </button>
-                    </a>
-                </div>
+<div class="col-md-10">
+    <div class="panel panel-default">
+        <div class="panel-heading">Tasks
+            <a href="{{ action('TaskController@create') }}">
+                <button class="btn btn-primary btn-sm pull-right btn--panel-heading">
+                    <span class="glyphicon glyphicon-paste" aria-hidden="true"></span> New Task
+                </button>
+            </a>
+        </div>
 
-                <div class="panel-body">
+        <div class="panel-body">
 
-                    @include('flash::message')
-                    <ul class="list-group">
-                        @foreach ($tasks as $task)
-                            <li class="list-group-item"><a href="{{ url('/tasks/'.$task->id)}}">{{ $task->title}} </a></li>
-                        @endforeach
-                    </ul>
+            @include('flash::message')
+            <ul class="list-group">
+                @foreach ($tasks as $task)
+                    <li class="list-group-item"><a href="{{ url('/tasks/'.$task->id)}}">{{ $task->title}} </a></li>
+                @endforeach
+            </ul>
 
-                    {{ $tasks->links() }}
+            {{ $tasks->links() }}
 
-                </div>
-            </div>
         </div>
     </div>
+</div>
 
 @endsection
