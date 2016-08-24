@@ -18,6 +18,7 @@
       <th>Title</th> 
       <th>User</th>
       <th>Date</th>
+      <th>Type</th>
       <th>Status</th> 
       <th>Restore</th>
     </tr> 
@@ -28,8 +29,12 @@
         <td><a href="{{ route('revision.show', [$revision->id]) }}">{{ $revision->title}}</a></td>
         <td>{{ $revision->user->name }}</td>
         <td>{{ $revision->created_at }}</td> 
-        <td>Pending / deleted / Active / Decline / Version</td> 
-        <td><button class="btn btn-default btn-sm">Restore</button></td>
+        <td>{{ $revision->type}}</td>
+        <td>{{ $revision->status}}</td>
+        @if ($revision->status == 'version')
+          <td><button class="btn btn-default btn-sm">Restore</button></td>
+        @endif
+        
       </tr>
     @endforeach
   </tbody> 

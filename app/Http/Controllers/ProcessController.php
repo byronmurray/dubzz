@@ -58,7 +58,7 @@ class ProcessController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
         //$array = $processes->tasks->lists('id');
 
@@ -68,7 +68,7 @@ class ProcessController extends Controller
 
         //return $process;
 
-        return view('processes.create', compact('processes'));
+        return view('processes.create', compact('processes', 'id'));
     }
 
     /**

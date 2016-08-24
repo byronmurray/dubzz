@@ -21,7 +21,7 @@ class RevisionController extends Controller
      */
     public function show(Revision $revisions)
     {
-        return view('tasks.revisions.show', compact('revisions'));
+        return view('admin.taskRevision', compact('revisions'));
     }
 
 
@@ -51,9 +51,34 @@ class RevisionController extends Controller
     }
 
 
+    /**
+     * Create a new pending task for the specified resoure.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Task  $tasks
+     * @return \Illuminate\Http\Response
+     */
+    public function create(Request $request)
+    {
+        
+        $user = Auth::user();
+
+        $revision = new Revision;
+        $revision->task_id  = 0;
+        $revision->title    = $request->title;
+        $revision->body     = $request->body;
+        $revision->type     = 'original';
+        $user->revisons()->save($revision);
+
+        flash('Your Task title submitted for approval', 'success');
+
+        return back();
+
+    }
+
 
     /**
-     * Store the specified resource in storage.
+     * Store a edit to a current task.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Task  $tasks
@@ -86,32 +111,42 @@ class RevisionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Revision $revisions)
-    {
-        
-        //return $revisions;
-        /*This will update the revision depending on what the admin clicks*/
+    {    
 
+        /*Update the revision*/
         $revisions->update($request->all());
 
-
-
-        if ($request->approved) {
+        /*Update the Task*/
+        if ($request->approved && $request->type == 'edit') {
             $task = Task::find($revisions->task_id);
 
             $task->update([
                     $task->title    = $revisions->title,
                     $task->body     = $revisions->body
             ]);
+        }
+
+        /*Create the Task*/
+        if ($request->approved && $request->type == 'original') {
+
+            //return $revisions;
+
+            $task = new task();
+            $task->user_id = Auth::id();
+            $task->title = $revisions->title;
+            $task->body = $revisions->body;
+
+            $task->save();
+
+            //$task->tags()->attach($request->tag_list);
+
+            flash('Your new task was created', 'success');
+
+            return redirect()->action('AdminController@showTasks');
         } 
 
-       
         return back();
         
-        
-
     }
-
-
-
 
 }

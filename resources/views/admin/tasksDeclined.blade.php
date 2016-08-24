@@ -13,6 +13,7 @@
   <thead>
     <tr>  
       <th>Title</th>
+      <th>Type</th>
       <th>User</th> 
       <th>Date</th> 
       <th>Restore</th>
@@ -23,6 +24,7 @@
   	@foreach ($revisions as $revision)
         <tr>
         <td><a href="#">{{ $revision->title}} </a></td>
+        <td>{{ $revision->type }}</td>
         <td>{{ $revision->user->name }}</td>
         <td>{{ $revision->created_at }}</td>
 		    <td><button>Restore</button></td>

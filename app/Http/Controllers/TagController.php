@@ -5,24 +5,22 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Revision;
 use App\Task;
-use Session;
 use App\Tag;
-use Auth;
 
-
-class TaskController extends Controller
+class TagController extends Controller
 {
-     /**
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
-        $tasks = Task::paginate(10);
-        return view('tasks.index', compact('tasks'));
+    {
+        $tags = Tag::all();
+        $tags->load('tasks');
+
+        return view('tags.index', compact('tags'));
     }
 
     /**
@@ -32,11 +30,8 @@ class TaskController extends Controller
      */
     public function create()
     {
-        $tags = Tag::lists('name', 'id');
-        return view('tasks.create', compact('tags'));
+        return view('tags.create');
     }
-
-
 
     /**
      * Store a newly created resource in storage.
@@ -44,10 +39,17 @@ class TaskController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store()
+    public function store(Request $request)
     {
-        
-        
+        $this->validate($request, [
+            'name' => 'required|unique:tags|max:120',
+        ]);
+
+        Tag::create($request->all());
+
+        flash('Your Tag has been created', 'success');
+
+        return redirect()->route('tags.index');
     }
 
     /**
@@ -56,10 +58,9 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Task $tasks)
+    public function show(Tag $tags)
     {
-        
-        return view('tasks.show', compact('tasks'));
+        return view('tags.show', compact('tags'));
     }
 
     /**
@@ -68,10 +69,9 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Task $tasks)
+    public function edit($id)
     {
-        $tags = Tag::lists('name', 'id');
-        return view('tasks.edit', compact('tasks', 'tags'));
+        return view('tags.edit');
     }
 
     /**
@@ -81,24 +81,25 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Task $tasks)
+    public function update(Request $request, $id)
     {
-        
-        /*This will run when admin aproves it*/
-
-        //$tasks->update($request->all());
-        //$tasks->tags()->sync($request->tag_list);
-
-        //return $tasks;
-
-        
-
-        flash('Your Task title submitted for approval', 'success');
-
-        return back();
-
-        //return redirect()->action('TaskController@show', [$tasks->id]);
-
+        return ;
     }
 
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        $tag = Tag::find($id);
+
+        $tag->destroy($id);
+
+        flash('The Tag has been deleted', 'success');
+
+        return back();
+    }
 }

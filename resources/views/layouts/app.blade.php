@@ -20,6 +20,12 @@
     
     
     <style>
+
+
+        .select2-container, .select2-search__field,  .select2-search--inline {
+          width: 100% !important;
+        }
+
         body {
             font-family: 'Lato';
         }
@@ -31,6 +37,10 @@
         .btn--panel-heading {
             position: relative;
             bottom: 5px;
+        }
+
+        .red {
+          color: red;
         }
 
         .btn-sm {
@@ -46,7 +56,7 @@
 
     <div class="container">
       
-
+        @include('flash::message')
         @yield('content')
 
         {{-- <div class="col-md-2 sidebar">
@@ -66,9 +76,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
 
     <script type="text/javascript">
-      $('#tag_list').select2({
-        placeholder: 'Select a tag',
-        tags: true,
+      $('#tag_list, #tasks').select2({
+        placeholder: 'Start typing to select or click to drop down'
       });
     </script>
 

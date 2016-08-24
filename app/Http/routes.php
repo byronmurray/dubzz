@@ -16,6 +16,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/todo', function () {
+    return view('todo');
+});
+
 /*LOGIN/LOGOUT/PASSWORD RESET*/
 Route::auth();
 
@@ -27,13 +31,20 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('tasks', 'TaskController');
 
     /*PROCESSES*/
+    Route::get('processes/create/{id}', 'ProcessController@create')->name('process.create');
 	Route::resource('processes', 'ProcessController');
+
+
+	/*TAGS*/
+	Route::resource('tags', 'TagController');
+
 	
 	/*TASK/PROCESS POVIT*/
 	Route::post('processes/{process}/tasks', 'ProcessTaskController@store');
 	Route::delete('task/{task}/process/{process}', 'ProcessTaskController@destroy' )->name('tasks.remove');
 	
 	/*REVISIONS*/
+	Route::post('revisions', 'RevisionController@create');
 	Route::post('revisions/{tasks}', 'RevisionController@store');
 	Route::patch('revisions/{revisions}', 'RevisionController@update');
 
@@ -42,6 +53,9 @@ Route::group(['middleware' => ['auth']], function () {
 
 			/*ADMIN AREA*/ /*this will be in its own group middleware*/
 			Route::get('dashboard', 'AdminController@index');
+
+			/*USERS*/
+			Route::resource('dashboard/users', 'UserController');
 
 			/*TASKS*/
 			Route::get('dashboard/tasks', 'AdminController@showTasks');

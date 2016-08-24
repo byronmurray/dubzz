@@ -18,6 +18,8 @@ class CreateRevisionsTable extends Migration
             $table->integer('task_id');
             $table->string('title');
             $table->text('body');
+            $table->string('type')->default('edit');
+            $table->string('status')->default('pending');
             $table->boolean('approved')->default(0);
             $table->boolean('seen')->default(0);
             $table->timestamps();

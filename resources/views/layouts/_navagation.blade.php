@@ -22,6 +22,7 @@
                     <li><a href="{{ url('/dashboard') }}">Dashboard</a></li>
                     <li><a href="{{ url('/processes') }}">Processes</a></li>
                     <li><a href="{{ url('/tasks') }}">Tasks</a></li>
+                    <li><a href="{{ url('/todo') }}">ToDo</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->

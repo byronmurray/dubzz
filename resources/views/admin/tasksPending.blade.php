@@ -10,10 +10,10 @@
 <table class="table table-striped">
   <thead>
     <tr>  
-      <th>Title</th> 
+      <th>Title</th>
+      <th>Type</th> 
       <th>User</th> 
       <th>Date</th>
-      <th>New/Edit</th>
       <th>Approve</th>
       <th>Delete</th>
     </tr> 
@@ -21,10 +21,10 @@
   <tbody>
   	@foreach ($revisions as $revision)
       	<tr>
-	    	<td><a href="#">{{ $revision->title}} </a></td>
+	    	<td><a href="{{ route('revision.show', [$revision->id]) }}">{{ $revision->title}} </a></td>
+        <td>{{ $revision->type }}</td>
 		    <td>{{ $revision->user->name }}</td>
 		    <td>{{ $revision->created_at }}</td>
-		    <td>New</td>
 		    <td><button>Approve</button></td>
 		    <td><button>Delete</button></td>
   		</tr>

@@ -56,7 +56,7 @@
             <!-- Main Menu -->
             <div class="side-menu-container">
                 <ul class="nav navbar-nav">
-                    <li class=""><a href="#"><span class="glyphicon glyphicon-dashboard"></span> Home</a></li>
+                    <li class=""><a href="/dashboard"><span class="glyphicon glyphicon-dashboard"></span> Home</a></li>
                     <!-- Dropdown-->
                     <li class="active panel panel-default" id="dropdown">
                         <a data-toggle="collapse" href="#dropdown-lvl1">
@@ -75,9 +75,9 @@
                             </div>
                         </div>
                     </li>
-                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> Team</a></li>
+                    <li><a href="/dashboard/users"><span class="glyphicon glyphicon-user"></span> Team</a></li>
                     <li><a href="#"><span class="glyphicon glyphicon-plane"></span> Processes</a></li>
-                    <li><a href="#"><span class="glyphicon glyphicon-cloud"></span> Tags</a></li>
+                    <li><a href="{{ route('tags.index') }}"><span class="glyphicon glyphicon-cloud"></span> Tags</a></li>
                     
 
                 </ul>
@@ -95,7 +95,7 @@
         <div class="panel-body">
 
         {{-- ADMIN ONLY MENU /END --}}
-
+        @include('flash::message')
         @yield('content')
 
     {{-- ADMIN ONLY STUFF FOOTER / START --}}

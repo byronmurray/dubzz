@@ -5,24 +5,20 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Revision;
-use App\Task;
-use Session;
-use App\Tag;
-use Auth;
+use App\User;
 
-
-class TaskController extends Controller
+class UserController extends Controller
 {
-     /**
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
-        $tasks = Task::paginate(10);
-        return view('tasks.index', compact('tasks'));
+    {
+        $users = User::all();
+        
+        return view('users.index', compact('users'));
     }
 
     /**
@@ -32,11 +28,8 @@ class TaskController extends Controller
      */
     public function create()
     {
-        $tags = Tag::lists('name', 'id');
-        return view('tasks.create', compact('tags'));
+        return view('users.');
     }
-
-
 
     /**
      * Store a newly created resource in storage.
@@ -44,10 +37,9 @@ class TaskController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store()
+    public function store(Request $request)
     {
-        
-        
+        return view('users.');
     }
 
     /**
@@ -56,10 +48,9 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Task $tasks)
+    public function show($id)
     {
-        
-        return view('tasks.show', compact('tasks'));
+        return view('users.');
     }
 
     /**
@@ -68,10 +59,9 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Task $tasks)
+    public function edit($id)
     {
-        $tags = Tag::lists('name', 'id');
-        return view('tasks.edit', compact('tasks', 'tags'));
+        return view('users.');
     }
 
     /**
@@ -81,24 +71,19 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Task $tasks)
+    public function update(Request $request, $id)
     {
-        
-        /*This will run when admin aproves it*/
-
-        //$tasks->update($request->all());
-        //$tasks->tags()->sync($request->tag_list);
-
-        //return $tasks;
-
-        
-
-        flash('Your Task title submitted for approval', 'success');
-
-        return back();
-
-        //return redirect()->action('TaskController@show', [$tasks->id]);
-
+        return view('users.');
     }
 
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        return view('users.');
+    }
 }

@@ -6,29 +6,51 @@
     <div class="panel panel-default">
         <div class="panel-heading">{{ $processes->title }}
 
-        {{ $process_id = $processes->id }}
-
         @if ($processes->processes->isEmpty())
             <button type="button" class="btn btn-primary btn-sm pull-right btn--panel-heading" data-toggle="modal" data-target="#assign-task">
                 Assign Task
             </button>
-            <button type="button" class="btn btn-primary btn-sm pull-right btn--panel-heading" data-toggle="modal" data-target="#new-task">
+            <button >
                 New Task
             </button>
         @endif
 
         @if ($processes->tasks->isEmpty())
-            <button type="button" class="btn btn-primary btn-sm pull-right btn--panel-heading" data-toggle="modal" data-target="#create-process">
+            <a href="{{ route('process.create', [$processes->id]) }}"><button type="button" class="btn btn-primary btn-sm pull-right btn--panel-heading">
                 <span class="glyphicon glyphicon-paste" aria-hidden="true"></span> New Process
-            </button>
+            </button></a>
         @endif
 
 
-        {{-- modal for creating a new process --}}
-        @include('processes._create_process', ['submit' => 'Create New', 'parent_id' => $processes->id])
-
         {{-- modal for assign a task to a process --}}
-        @include('processes._assign_tasks')
+        <div class="modal" id="assign-task" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">{{ $processes->title}}</h4>
+              </div>
+              <div class="modal-body">
+                                              
+              <form action="{{ url('/processes/'.$processes->id.'/tasks')}}" method="POST">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <div class="form-group">
+                   <select class="form-control" multiple="multiple" id="tasks" name="task_id[]">
+                      
+                      @foreach($taskList as $task)
+                          <option value="{{$task->id}}">{{$task->title}}</option>
+                      @endforeach
+
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-default">Assign</button>
+              </form>
+
+              </div>
+            </div>
+          </div>
+        </div>
 
             
         </div>
@@ -40,7 +62,66 @@
             @include('flash::message')
                 
             @if (count($processes->processes))
-              @include('processes._display_processes_tasks', ['var' => $processes->processes ])
+              <table class="table table-striped">
+                <thead>
+                  <tr>  
+                    <th>Title</th> 
+                    <th width="5%">Processes</th> 
+                    <th width="5%">Tasks</th>
+                    <th width="5%">View</th>
+                    <th width="5%">Edit</th>
+                    <th width="5%">Delete</th>
+                  </tr> 
+                </thead>
+                <tbody>
+                @foreach ($processes->processes as $process)
+
+
+                <tr>
+                  <td>{{ $process->title}}</td>
+                  <td class="text-center">
+                      @if (count($process->processes))
+                          {{ count($process->processes)}}
+                      @endif
+                  </td> 
+                  <td class="text-center">
+                    @if (count($process->tasks)) 
+                        {{ count($process->tasks) }}
+                    @endif
+                  </td>
+                  <td>
+                    <a href="{{ url('/processes/'.$process->id)}}" title="view process">
+                        <button class="btn btn-primary btn-xs">
+                            <span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>
+                        </button>
+                      </a>
+                  </td>
+                  <td>
+                    <a href="{{ url('/processes/'.$process->id.'/edit')}}">Edit</a>
+                  </td>
+                  <td>
+                    <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#myModal-{{ $process->id }}">
+                        <span class="glyphicon glyphicon-trash" title="delete process"></span>
+                    </button>
+                  </td>
+                </tr> 
+                  
+
+
+
+
+
+
+                @endforeach
+
+                </tbody> 
+              </table>
+
+
+
+
+
+ 
             @endif
 
             

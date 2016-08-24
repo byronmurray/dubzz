@@ -69,7 +69,7 @@ class AdminController extends Controller
      */
     public function showTasksDeclined()
     {
-        $revisions = Revision::where('seen', false)->where('approved', false)->get();
+        $revisions = Revision::where('seen', true)->where('approved', false)->get();
 
         return view('admin.tasksDeclined' , compact('revisions'));
     }
