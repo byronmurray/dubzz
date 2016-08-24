@@ -18,7 +18,6 @@
 
         <p>{!! $tasks->body !!}</p>
 
-        
         @unless ($tasks->tags->isEmpty())
             <h4>Tags</h4>
             @foreach ($tasks->tags as $tag)

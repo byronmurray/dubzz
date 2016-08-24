@@ -36,7 +36,9 @@
 
             <h2>Task Revisions</h2>
             <ul>
-                <li>Add Tags</li>
+                <li>Tags dont need aproval, dont make a revision if just tags are updated, need to do a check.</li>
+                <li><s>Add Tags</s></li>
+                <li>need to find any other revisions with a status of active and set to version for the task-revision</li>
                 <li>Finish Buttons</li>
                 <li>Finish off views</li>
                 <li>Tidy up Controllers / Make into one controller, think about what you are trying to do here</li>

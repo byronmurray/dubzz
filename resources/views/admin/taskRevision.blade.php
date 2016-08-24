@@ -17,7 +17,7 @@
 
         <input type="hidden" name="approved" value="1">
         <input type="hidden" name="seen" value="1">
-        <input type="hidden" name="type" value="{{ $revisions->type}}">
+        <input type="hidden" name="status" value="active">
         
         {!! Form::submit('Approve', ['class' => 'btn btn-primary']) !!}
 

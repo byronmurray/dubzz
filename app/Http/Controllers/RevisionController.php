@@ -61,18 +61,6 @@ class RevisionController extends Controller
     public function create(Request $request)
     {
         
-        $user = Auth::user();
-
-        $revision = new Revision;
-        $revision->task_id  = 0;
-        $revision->title    = $request->title;
-        $revision->body     = $request->body;
-        $revision->type     = 'original';
-        $user->revisons()->save($revision);
-
-        flash('Your Task title submitted for approval', 'success');
-
-        return back();
 
     }
 
@@ -95,6 +83,9 @@ class RevisionController extends Controller
         $revision->body     = $request->body;
         $user->revisons()->save($revision);
 
+        // need to sync tags here
+        $tasks->tags()->sync($request->tag_list);
+
         flash('Your Task title submitted for approval', 'success');
 
         return back();
@@ -113,39 +104,44 @@ class RevisionController extends Controller
     public function update(Request $request, Revision $revisions)
     {    
 
+        //return $request->all();
         /*Update the revision*/
+
+        /*need to find any other revisions with a status of active and set to version for the task-revision*/
+
         $revisions->update($request->all());
+        
 
         /*Update the Task*/
-        if ($request->approved && $request->type == 'edit') {
+        if ($request->approved) {
             $task = Task::find($revisions->task_id);
-
             $task->update([
                     $task->title    = $revisions->title,
-                    $task->body     = $revisions->body
+                    $task->body     = $revisions->body,
+                    $task->status   = 'published'
             ]);
+
+
         }
 
         /*Create the Task*/
-        if ($request->approved && $request->type == 'original') {
+        /*we wount need this if this has worked*/
+        /*if ($request->approved && $request->type == 'original') {
 
             //return $revisions;
 
-            $task = new task();
-            $task->user_id = Auth::id();
-            $task->title = $revisions->title;
-            $task->body = $revisions->body;
+            $task->update([
+                $task->status   = 'published'
+            ]);
+            
 
-            $task->save();
 
-            //$task->tags()->attach($request->tag_list);
+            
+        } */
 
-            flash('Your new task was created', 'success');
+        flash('Your new task has been updated', 'success');
 
-            return redirect()->action('AdminController@showTasks');
-        } 
-
-        return back();
+        return redirect()->action('AdminController@showTasks');
         
     }
 

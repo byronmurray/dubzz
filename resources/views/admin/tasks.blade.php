@@ -38,7 +38,7 @@
 	        		</a>
             	@endunless
 		    </td>
-		    <td><button class="btn btn-danger btn-sm">Delete</button></td>
+		    <td><button class="btn btn-defualt btn-sm">Delete</button></td>
   		</tr>
     @endforeach
   </tbody> 

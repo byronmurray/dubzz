@@ -17,6 +17,8 @@ class CreateTasksTable extends Migration
             $table->integer('user_id');
             $table->string('title');
             $table->text('body');
+            $table->string('status')->default('draft');
+            $table->boolean('deleted')->default(0);
             $table->timestamps();
         });
     }

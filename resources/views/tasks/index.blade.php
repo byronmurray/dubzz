@@ -14,7 +14,6 @@
 
         <div class="panel-body">
 
-            @include('flash::message')
             <ul class="list-group">
                 @foreach ($tasks as $task)
                     <li class="list-group-item"><a href="{{ url('/tasks/'.$task->id)}}">{{ $task->title}} </a></li>

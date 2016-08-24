@@ -43,7 +43,7 @@ class AdminController extends Controller
      */
     public function showTasks()
     {
-        $tasks = Task::all();
+        $tasks = Task::where('status', 'published')->where('deleted', false)->get();
 
         return view('admin.tasks' , compact('tasks'));
     }
@@ -82,7 +82,7 @@ class AdminController extends Controller
      */
     public function showTasksDeleted()
     {
-        $tasks = Task::all();
+        $tasks = Task::where('deleted', true)->get();
 
         return view('admin.tasksDeleted' , compact('tasks'));
     }

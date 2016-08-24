@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Revision extends Model
 {
     
-	protected $fillable = ['approved', 'seen'];
+	protected $fillable = ['approved', 'seen', 'status'];
 
 
     public function user() {

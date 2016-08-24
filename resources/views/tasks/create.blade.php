@@ -10,7 +10,7 @@
 
         @include('errors._form')
 
-        {!! Form::open(['url' => 'revisions']) !!}
+        {!! Form::open(['url' => 'tasks']) !!}
             <div class="form-group">
                 {!! Form::label('title', 'Title:') !!}
                 {!! Form::text('title', null, ['class' => 'form-control']) !!}

@@ -21,7 +21,7 @@ class TaskController extends Controller
      */
     public function index()
     {   
-        $tasks = Task::paginate(10);
+        $tasks = Task::where('status', 'published')->where('deleted', false)->paginate(20);
         return view('tasks.index', compact('tasks'));
     }
 
@@ -44,10 +44,34 @@ class TaskController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store()
+    public function store(Request $request)
     {
         
+        $user = Auth::user();
+        /*create new task as a draft*/
+        $task = new Task();
+        $task->user_id   = $user->id;
+        $task->title     = $request->title;
+        $task->body      = $request->body;
         
+        $task->save();
+
+        /*add the tags to the task*/
+        $task->tags()->attach($request->tag_list);
+
+        /*make the revision for the task*/
+        $revision = new Revision;
+        $revision->task_id  = $task->id;
+        $revision->title    = $task->title;
+        $revision->body     = $task->body;
+        $revision->type     = 'original'; // need to look at this
+        
+        $user->revisons()->save($revision);
+
+        flash('Your Task has been submitted for approval', 'success');
+
+        return redirect()->route('tasks.index');
+
     }
 
     /**
@@ -58,7 +82,6 @@ class TaskController extends Controller
      */
     public function show(Task $tasks)
     {
-        
         return view('tasks.show', compact('tasks'));
     }
 

@@ -45,7 +45,7 @@ Route::group(['middleware' => ['auth']], function () {
 	
 	/*REVISIONS*/
 	Route::post('revisions', 'RevisionController@create');
-	Route::post('revisions/{tasks}', 'RevisionController@store');
+	Route::post('revisions/{tasks}', 'RevisionController@store')->name('revision.store');
 	Route::patch('revisions/{revisions}', 'RevisionController@update');
 
 	
