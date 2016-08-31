@@ -20,7 +20,7 @@
                 <li><s>Make Tags Views</s></li>
                 <li><s>Make team view</s></li>
                 <li>Make Processes View</li>
-                <li>Covert All forms into blade sytax</li>
+                <li>Covert All forms into blade syntax</li>
                 <li>Use route names for links</li>
             </ul>
 
@@ -30,20 +30,21 @@
                 <li><s>Create New</s></li>
                 <li>Edit</li>
                 <li><s>Delete</s></li>
-                <li><s>Covert All forms into blade sytax</s></li>
+                <li><s>Covert All forms into blade syntax</s></li>
                 <li>Use route names for links</li>
             </ul>
 
             <h2>Task Revisions</h2>
             <ul>
-                <li>Tags dont need aproval, dont make a revision if just tags are updated, need to do a check.</li>
+                <li>Tags don't need approval, don't make a revision if just tags are updated, need to do a check.</li>
+                <li>Before and after text with high lighting</li>
                 <li><s>Add Tags</s></li>
                 <li>need to find any other revisions with a status of active and set to version for the task-revision</li>
                 <li>Finish Buttons</li>
                 <li>Finish off views</li>
                 <li>Tidy up Controllers / Make into one controller, think about what you are trying to do here</li>
                 <li>Rename table and model to TasksRevisions</li>
-                <li>Covert All forms into blade sytax</li>
+                <li>Covert All forms into blade syntax</li>
                 <li>Use route names for links</li>
                 <li>Redirects/returns</li>
                 <li>Flash Messaging</li>
@@ -51,7 +52,7 @@
 
             <h2>Tasks</h2>
             <ul>
-                <li>Covert All forms into blade sytax</li>
+                <li>Covert All forms into blade syntax</li>
                 <li>Use route names for links</li>
                 <li>Select 2 select box</li>
             </ul>
@@ -63,7 +64,7 @@
                 <li>Same for forms, on for all and handle with vars</li>
                 <li>Redo Redirects/returns</li>
                 <li>Flash Messaging</li>
-                <li>Covert All forms into blade sytax</li>
+                <li>Covert All forms into blade syntax</li>
                 <li>Use route names for links</li>
             </ul>
 
