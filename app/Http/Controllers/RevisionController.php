@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\HtmlDiff;
 use App\Http\Requests;
 use App\Revision;
 use App\Task;
@@ -21,7 +22,26 @@ class RevisionController extends Controller
      */
     public function show(Revision $revisions)
     {
-        return view('admin.taskRevision', compact('revisions'));
+        
+        //return $revisions;
+
+        $task = Task::find($revisions->task_id);
+
+
+
+        $revisionBody = $revisions->body;
+        $taskBody = $task->body;
+        $diff = new HtmlDiff(  $taskBody, $revisionBody );
+        $diff->build();
+
+        $getRevisionBody = $diff->getOldHtml();
+
+        $getTaskBody = $diff->getNewHtml();
+
+        $getDifference = $diff->getDifference();
+
+
+        return view('admin.taskRevision', compact('revisions', 'task', 'getRevisionBody', 'getTaskBody', 'getDifference' ));
     }
 
 

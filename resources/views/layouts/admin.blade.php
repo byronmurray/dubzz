@@ -36,6 +36,24 @@
         .btn-sm {
           margin-right: 2px;
         }
+
+        .tasks del {
+            text-decoration: none !important;
+            background: #f19494;
+        }
+
+        .revisions ins {
+            text-decoration: none !important;
+            background: #7ef37e;
+        }
+
+        .revisions del {
+            display: none;
+        }
+
+        .tasks ins {
+            display: none;
+        }
         
     </style>
     
