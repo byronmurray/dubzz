@@ -47,7 +47,7 @@
             background: #7ef37e;
         }
 
-        .revisions del {
+        .revisions del, .tasks .diffmod {
             display: none;
         }
 

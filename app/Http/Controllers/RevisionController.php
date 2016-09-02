@@ -104,7 +104,11 @@ class RevisionController extends Controller
         $user->revisons()->save($revision);
 
         // need to sync tags here
-        $tasks->tags()->sync($request->tag_list);
+        /*need to do a check here first*/
+        if ($request->tag_list) {
+            $tasks->tags()->sync($request->tag_list);
+        }
+        
 
         flash('Your Task title submitted for approval', 'success');
 
@@ -124,7 +128,6 @@ class RevisionController extends Controller
     public function update(Request $request, Revision $revisions)
     {    
 
-        //return $request->all();
         /*Update the revision*/
 
         /*need to find any other revisions with a status of active and set to version for the task-revision*/
@@ -144,20 +147,6 @@ class RevisionController extends Controller
 
         }
 
-        /*Create the Task*/
-        /*we wount need this if this has worked*/
-        /*if ($request->approved && $request->type == 'original') {
-
-            //return $revisions;
-
-            $task->update([
-                $task->status   = 'published'
-            ]);
-            
-
-
-            
-        } */
 
         flash('Your new task has been updated', 'success');
 
