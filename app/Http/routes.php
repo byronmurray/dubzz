@@ -67,6 +67,9 @@ Route::group(['middleware' => ['auth']], function () {
 			Route::get('dashboard/tasks/{tasks}/revisions', 'RevisionController@showTasksRevisions')->name('tasks.revisions');
 			Route::get('dashboard/revisions/{revisions}', 'RevisionController@show')->name('revision.show');
 
+			/*TASK PROCESSES*/
+			Route::get('dashboard/tasks/{tasks}/processes', 'TaskProcessesController@show')->name('task.processes');
+
 });
 
 

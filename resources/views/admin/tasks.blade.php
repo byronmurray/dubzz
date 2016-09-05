@@ -17,7 +17,8 @@
   <thead>
     <tr>  
       <th>Title</th> 
-      <th>Date</th> 
+      <th>Date</th>
+      <th>Assigned</th> 
       <th>Edit</th>
       <th>Revisions</th>
       <th>Delete</th>
@@ -29,7 +30,8 @@
     {{-- {{ var_dump($task->revisions->seen )}} --}}
       	<tr>
 	    	<td><a href="{{ url('/tasks/'.$task->id)}}">{{ $task->title}} </a></td>
-		    <td>{{ $task->created_at }}</td> 
+		    <td>{{ $task->created_at }}</td>
+        <td><a href="{{ route('task.processes', [$task->id]) }}">{{ count( $task->processes ) }}</a></td>
 		    <td><button class="btn btn-default btn-sm">Edit</button></td>
 		    <td>
             	@unless ($task->revisions->isEmpty())

@@ -34,6 +34,7 @@
                                               
               <form action="{{ url('/processes/'.$processes->id.'/tasks')}}" method="POST">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <input type="hidden" name="process_id" value="{{ $processes->id }}">
                 <div class="form-group">
                    <select class="form-control" multiple="multiple" id="tasks" name="task_id[]">
                       
@@ -131,13 +132,13 @@
                 @foreach ($processes->tasks as $task)
                     <li class="list-group-item">
                       <a href="{{ url('/tasks/'.$task->id)}}">{{ $task->title}}</a>
-                      <button type="button" class="btn btn-danger btn-xs pull-right" data-toggle="modal" data-target="#remove-{{ $task->id }}">
+                      <button type="button" class="btn btn-default btn-xs pull-right" data-toggle="modal" data-target="#remove-{{ $task->id }}">
                           <span class="glyphicon glyphicon-paste" aria-hidden="true"></span> Remove Task
                       </button>
                     </li>
 
 
-                    <div class="modal" id="remove-{{ $task->id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    {{-- <div class="modal" id="remove-{{ $task->id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                       <div class="modal-dialog" role="document">
                         <div class="modal-content">
                           <div class="modal-header">
@@ -150,14 +151,14 @@
 
                           </div>
                           <div class="modal-footer">
-                            {{ Form::open(['method' => 'DELETE', 'route' => ['tasks.remove', $task->id, $process_id]]) }}
+                            {{ Form::open(['method' => 'DELETE', 'route' => ['tasks.remove', $task->id, $processes->id]]) }}
                               {{ Form::submit('Remove', ['class' => 'btn btn-danger']) }}
                               {{ Form::submit('Cancel', ['class' => 'btn btn-default', 'data-dismiss' => 'modal' ]) }}
                             {{ Form::close() }}
                           </div>
                         </div>
                       </div>
-                  </div>
+                  </div> --}}
 
                 @endforeach
               </ul>

@@ -45,6 +45,8 @@ class AdminController extends Controller
     {
         $tasks = Task::where('status', 'published')->where('deleted', false)->get();
 
+        $tasks->load('processes');
+
         return view('admin.tasks' , compact('tasks'));
     }
 

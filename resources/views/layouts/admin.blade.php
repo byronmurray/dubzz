@@ -37,22 +37,36 @@
           margin-right: 2px;
         }
 
-        .tasks del {
-            text-decoration: none !important;
+        del.diffdel, del.diffmod {
+            text-decoration: none;
             background: #f19494;
         }
 
-        .revisions ins {
+        ins.diffmod, ins.diffins, p.diffmod {
             text-decoration: none !important;
             background: #7ef37e;
         }
 
-        .revisions del, .tasks .diffmod {
+        .tasks p.diffmod, .tasks ins.diffmod, .tasks ins.diffins, .revisions del.diffdel, .revisions del.diffmod  {
             display: none;
         }
 
+        .tasks del {
+            /*text-decoration: none !important;
+            background: #f19494;*/
+        }
+
+        .revisions ins {
+            /*text-decoration: none !important;
+            background: #7ef37e;*/
+        }
+
+        .revisions del, .tasks .diffmod {
+            /*display: none;*/
+        }
+
         .tasks ins {
-            display: none;
+            /*display: none;*/
         }
         
     </style>
